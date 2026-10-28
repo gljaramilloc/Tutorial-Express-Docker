@@ -17,7 +17,7 @@ jobs:
       run: echo "${{ secrets.DOCKERHUB_PASS }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag giseljaramillo06/Tutorial-Express-Docker:latest
+      run: docker build . --file Dockerfile --tag giseljaramillo06/tutorial-express-docker:latest
 
     - name: Docker Push
-      run: docker push giseljaramillo06/Tutorial-Express-Docker:latest
+      run: docker push giseljaramillo06/tutorial-express-docker:latest
