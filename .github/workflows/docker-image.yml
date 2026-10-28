@@ -14,14 +14,16 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: docker login
+      if: ${{ github.event_name == 'push' && secrets.DOCKERHUB_USER != '' && secrets.DOCKERHUB_TOKEN != '' }}
       env:
         DOCKER_USER: ${{ secrets.DOCKERHUB_USER }}
         DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASS
+        echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag giseljaramillo06/Tutorial-Express-Docker:latest
 
     - name: Docker Push
+      if: ${{ github.event_name == 'push' && secrets.DOCKERHUB_USER != '' && secrets.DOCKERHUB_TOKEN != '' }}
       run: docker push giseljaramillo06/Tutorial-Express-Docker:latest
