@@ -15,16 +15,7 @@ const phrases = [
 
 app.get('/', (req, res) => {
   const number = Math.floor(Math.random() * 7)
-
   res.send(phrases[number] + "-Container id: " + os.hostname() + "-Version: 1.0.0")
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
 })
 
 app.listen(port, () => {
